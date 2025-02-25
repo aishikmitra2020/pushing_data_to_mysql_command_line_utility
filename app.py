@@ -2,12 +2,15 @@ import argparse
 import pandas as pd
 from sqlalchemy import create_engine
 from sqlalchemy.exc import SQLAlchemyError
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # MySQL connection details (you can customize these values)
-HOST = "your_host"
-USERNAME = "your_username"
-PASSWORD = "your_password"
-DATABASE = "your_database"
+HOST = os.getenv('HOST')
+USERNAME = os.getenv('USERNAME')
+PASSWORD = os.getenv('PASSWORD')
+DATABASE = os.getenv('DATABASE')
 PORT = 3306  # default MySQL port
 
 def insert_data_to_mysql(excel_file, sheet_name, table_name):
