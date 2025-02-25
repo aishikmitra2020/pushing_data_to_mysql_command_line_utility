@@ -1,14 +1,18 @@
-## Running the File
+# Running the File
 
-To run the script, use the following command:
+To run the `app.py` script, use the following command in your terminal or command prompt:
 
-```python
-python upload_excel.py -e "C:\Users\YourUser\Documents\data.xlsx" -s Sheet1 -t sales_data
+```bash
+python app.py -e "C:\Users\YourUser\Documents\data.xlsx" -s Sheet1 -t sales_data
 
-### **Improvements Made:**
-1. Used `##` for headings instead of `<h2>`, making it more Markdown-friendly.
-2. Fixed typos: *spedcify* → *specify*.
-3. Added proper spacing and formatting for better readability.
-4. Used inline code formatting (`\`-e\``) for argument flags.
+Arguments
+The script accepts the following arguments:
 
-Let me know if you need further refinements! 🚀
+-e (or --excel-file): Specifies the location of the Excel file.
+Example: "C:\Users\YourUser\Documents\data.xlsx"
+
+-s (or --sheet-name): Specifies the name of the sheet in the Excel file.
+Example: Sheet1
+
+-t (or --table-name): Specifies the name of the table in MySQL where the data will be uploaded.
+Example: sales_data
