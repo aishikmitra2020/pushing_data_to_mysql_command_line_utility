@@ -1,0 +1,7 @@
+pandas
+openpyxl
+pymysql
+sqlalchemy
+python-decouple
+sqlalchemy
+mysqlclient
