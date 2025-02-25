@@ -14,8 +14,20 @@ DATABASE = os.getenv('DATABASE')
 PORT = 3306  # default MySQL port
 
 def insert_data_to_mysql(excel_file, sheet_name, table_name):
+    # Convert to absolute path to ensure correct file handling
+    excel_file = os.path.abspath(excel_file)
+
+    # Check if the file exists
+    if not os.path.exists(excel_file):
+        print(f"Error: File '{excel_file}' not found.")
+        return
+
     # Read the Excel file into a Pandas DataFrame
-    df = pd.read_excel(excel_file, sheet_name=sheet_name)
+    try:
+        df = pd.read_excel(excel_file, sheet_name=sheet_name)
+    except Exception as e:
+        print(f"Error reading Excel file: {e}")
+        return
 
     # Create the connection string
     connection_string = f"mysql+pymysql://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
@@ -33,12 +45,12 @@ def insert_data_to_mysql(excel_file, sheet_name, table_name):
         engine.dispose()
 
 def main():
-    # Setting up command-line argument parsing
-    parser = argparse.ArgumentParser(description="Insert data from an Excel sheet into MySQL table")
+    # Setting up command-line argument parsing with optional arguments
+    parser = argparse.ArgumentParser(description="Insert data from an Excel sheet into a MySQL table")
     
-    parser.add_argument("excel_file", help="Path to the Excel file")
-    parser.add_argument("sheet_name", help="Name of the sheet in the Excel file")
-    parser.add_argument("table_name", help="Target table name in the MySQL database")
+    parser.add_argument("-e", "--excel_file", type=str, required=True, help="Full path to the Excel file")
+    parser.add_argument("-s", "--sheet_name", type=str, required=True, help="Name of the sheet in the Excel file")
+    parser.add_argument("-t", "--table_name", type=str, required=True, help="Target table name in the MySQL database")
 
     args = parser.parse_args()
 
