@@ -26,5 +26,5 @@ The script accepts the following arguments:
 
 - Ensure that the specified Excel file and sheet exist.
 - Verify that the MySQL database is properly configured before running the script.
-- If needed, install dependencies using `pip install -r requirements.txt`.
+- If needed, install dependencies using `pip install -r requirements.txt`
 
